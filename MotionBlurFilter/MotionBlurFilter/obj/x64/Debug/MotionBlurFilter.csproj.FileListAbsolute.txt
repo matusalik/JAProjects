@@ -1,0 +1,7 @@
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\MotionBlurFilter.exe.config
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\MotionBlurFilter.exe
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\MotionBlurFilter.pdb
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBlurFilter.csproj.AssemblyReference.cache
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBlurFilter.csproj.CoreCompileInputs.cache
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBlurFilter.exe
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBlurFilter.pdb

@@ -1,0 +1,2 @@
+LIBRARY MotionBlurASM
+EXPORTS MyProc1
