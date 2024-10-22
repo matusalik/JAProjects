@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 public class ASM {
-    [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
+    //PC
+    //[DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
+    //Laptop
+    [DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
     static extern int MyProc1(int a, int b);
     public void CallAsmProcedure() {
         int x = 10, y = 15;
@@ -16,7 +19,10 @@ public class ASM {
     }
 }
 public class C{
-    [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
+    //PC
+    //[DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
+    //Laptop
+    [DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
     static extern int add(int a, int b);
     public void CallCFunction(){
         int x = 10, y = 15;
