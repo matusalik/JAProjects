@@ -10,12 +10,12 @@ public class ASM {
     //[DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
     //Laptop
     [DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
-    static extern int MyProc1(int a, int b);
+    static extern int MyProc1(ref Int64 a, Int64 b);
     public void CallAsmProcedure() {
-        int x = 10, y = 15;
-        int res = MyProc1(x, y);
+        Int64 x = 10, y = 15;
+        MyProc1(ref x, y);
         Console.Write("Wartości dodane w ASM: ");
-        Console.WriteLine(res);
+        Console.WriteLine(x);
     }
 }
 public class C{
