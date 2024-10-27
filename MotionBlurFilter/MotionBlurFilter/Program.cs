@@ -5,44 +5,47 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-public class ASM {
-    //PC
-    //[DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
-    //Laptop
-    [DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
-    static extern int MyProc1(ref Int64 a, Int64 b);
-    public void CallAsmProcedure() {
-        Int64 x = 10, y = 15;
-        MyProc1(ref x, y);
-        Console.Write("Wartości dodane w ASM: ");
-        Console.WriteLine(x);
-    }
-}
-public class C{
-    //PC
-    //[DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
-    //Laptop
-    [DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
-    static extern int add(int a, int b);
-    public void CallCFunction(){
-        int x = 10, y = 15;
-        int res = add(x, y);
-        Console.Write("Wartości dodane w C: ");
-        Console.WriteLine(res);
-    }
-}
+using System.Drawing;
 namespace MotionBlurFilter
 {
     class Program
     {       
         static void Main(string[] args)
         {
-            ASM asm = new ASM();
-            Thread threadAsm = new Thread(new ThreadStart(asm.CallAsmProcedure));
-            threadAsm.Start();
-            C c = new C();
-            Thread threadC = new Thread(new ThreadStart(c.CallCFunction));
-            threadC.Start();
+            //PC
+            Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
+            int numberOfThreads = 4;
+            int width = bitmap.Width;
+            int height = bitmap.Height;
+            int chunkWidth = width / numberOfThreads;
+            Console.WriteLine(width);
+            Console.WriteLine(height);
+            Console.WriteLine(chunkWidth);
+            for (int i = 0; i < numberOfThreads; i++){
+                int startX = i * chunkWidth; //Starting point for this thread
+                int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
+                Thread asmThread = new Thread(() => ProcessChunkASM(bitmap, startX, endX, height));
+                asmThread.Start();
+            }
+
+        }
+        //PC
+        [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
+        //Laptop
+        //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
+        static extern int MyProc1();
+        static void ProcessChunkASM(Bitmap image, int startX, int endX, int height)
+        {
+            Console.WriteLine("Starting thread with a starting point of: " + startX);
+        }
+        //PC
+        [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
+        //Laptop
+        //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
+        static extern int add(int a, int b);
+        static void ProcessChunkC(Bitmap image, int startX, int endX, int height)
+        {
+
         }
     }
 }
