@@ -23,3 +23,7 @@ C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\
 C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\System.Drawing.Common.pdb
 C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\System.Drawing.Common.xml
 C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBl.5D2B93EE.Up2Date
+C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\System.Drawing.Common.dll
+C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\System.Drawing.Common.pdb
+C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Debug\System.Drawing.Common.xml
+C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Debug\MotionBl.5D2B93EE.Up2Date

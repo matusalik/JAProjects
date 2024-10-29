@@ -13,7 +13,9 @@ namespace MotionBlurFilter
         static void Main(string[] args)
         {
             //PC
-            Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
+            //Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
+            //Laptop
+            Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
             int numberOfThreads = 4;
             int width = bitmap.Width;
             int height = bitmap.Height;
@@ -27,7 +29,6 @@ namespace MotionBlurFilter
                 Thread asmThread = new Thread(() => ProcessChunkASM(bitmap, startX, endX, height));
                 asmThread.Start();
             }
-
         }
         //PC
         [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
