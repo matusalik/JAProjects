@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.Drawing;
+using System.Drawing.Imaging;
 namespace MotionBlurFilter
 {
     class Program
@@ -13,22 +10,30 @@ namespace MotionBlurFilter
         static void Main(string[] args)
         {
             //PC
-            //Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
+            Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
             //Laptop
-            Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
-            int numberOfThreads = 4;
+            //Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
+            int numberOfThreads = 10;
+            int radius = 5;
             int width = bitmap.Width;
             int height = bitmap.Height;
             int chunkWidth = width / numberOfThreads;
-            Console.WriteLine(width);
-            Console.WriteLine(height);
-            Console.WriteLine(chunkWidth);
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            IntPtr ptr = bmpData.Scan0;
+            Thread[] threads = new Thread[numberOfThreads];
             for (int i = 0; i < numberOfThreads; i++){
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                Thread asmThread = new Thread(() => ProcessChunkASM(bitmap, startX, endX, height));
-                asmThread.Start();
+                threads[i] = new Thread(() => ProcessChunkC(ptr, startX, endX, width, height, radius));
+                threads[i].Start();
             }
+            foreach(Thread thread in threads)
+            {
+                thread.Join();
+            }
+            Console.WriteLine("All threads finished!");
+            bitmap.UnlockBits(bmpData);
+            bitmap.Save("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\blurred_dog.jpg", ImageFormat.Jpeg);
         }
         //PC
         [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
@@ -43,10 +48,11 @@ namespace MotionBlurFilter
         [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
         //Laptop
         //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
-        static extern int add(int a, int b);
-        static void ProcessChunkC(Bitmap image, int startX, int endX, int height)
+        static extern void ApplyMotionBlur(IntPtr ptr, int startX, int endX, int width, int height, int radius);
+        static void ProcessChunkC(IntPtr ptr, int startX, int endX, int width, int height, int radius)
         {
-
+            Console.WriteLine("Thread " + startX + " - " + endX + " started.");
+            ApplyMotionBlur(ptr, startX, endX, width, height, radius);
         }
     }
 }

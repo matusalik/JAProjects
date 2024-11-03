@@ -8,6 +8,8 @@
 #define PCH_H
 
 // w tym miejscu dodaj nagłówki, które mają być wstępnie kompilowane
+#include<stdint.h>
+#include<stdlib.h>
 #include "framework.h"
 
 #endif //PCH_H
