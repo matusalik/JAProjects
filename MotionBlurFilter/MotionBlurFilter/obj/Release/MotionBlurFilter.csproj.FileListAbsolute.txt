@@ -1,0 +1,11 @@
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\MotionBlurFilter.exe.config
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\MotionBlurFilter.exe
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\MotionBlurFilter.pdb
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\System.Drawing.Common.dll
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\System.Drawing.Common.pdb
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\Release\System.Drawing.Common.xml
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\Release\MotionBlurFilter.csproj.AssemblyReference.cache
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\Release\MotionBlurFilter.csproj.CoreCompileInputs.cache
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\Release\MotionBl.5D2B93EE.Up2Date
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\Release\MotionBlurFilter.exe
+C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\Release\MotionBlurFilter.pdb

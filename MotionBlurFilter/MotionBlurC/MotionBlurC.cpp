@@ -1,53 +1,47 @@
 #include "pch.h"
 #include "MotionBlurC.h"
 void ApplyMotionBlur(uint8_t* imageData, int startX, int endX, int width, int height, int radius) {
-    int bytesPerPixel = 3; // 3 bajty na piksel dla RGB
-    int stride = width * bytesPerPixel; // D³ugoœæ jednego wiersza danych obrazu
-
-    // Tworzymy tymczasow¹ tablicê dla rozmytych pikseli
+    int bytesPerPixel = 3; // 3 bytes per pixel for RGB
+    int stride = width * bytesPerPixel; // length of one row in data array
+    // Temporary array for blurred pixels
     uint8_t* blurredData = (uint8_t*)malloc(height * stride);
-    if (!blurredData) return; // Sprawdzamy, czy uda³o siê przydzieliæ pamiêæ
-
-    // Przetwarzanie obrazu w pionowych pasach
+    if (!blurredData) return; // Checking if allocating memory was succesful
+    // Processing an image in vertical stripes
     for (int x = startX; x < endX; x++) {
         for (int y = 0; y < height; y++) {
             int redSum = 0, greenSum = 0, blueSum = 0;
             int count = 0;
-
-            // Zbieranie pikseli w pionie
+            // Gathering pixels vertically
             for (int dy = -radius; dy <= radius; dy++) {
-                int ny = y + dy; // Nowa pozycja Y
-                if (ny >= 0 && ny < height) { // Sprawdzamy granice obrazu
-                    int index = ny * stride + x * bytesPerPixel; // Indeks w tablicy
-                    blueSum += imageData[index];           // Akumulujemy niebieski
-                    greenSum += imageData[index + 1];     // Akumulujemy zielony
-                    redSum += imageData[index + 2];       // Akumulujemy czerwony
-                    count++;                               // Liczymy piksele 
+                int ny = y + dy; // New Y position
+                if (ny >= 0 && ny < height) { // Checking image boundaries
+                    int index = ny * stride + x * bytesPerPixel; // Array index
+                    blueSum += imageData[index];           // Accumulating blue
+                    greenSum += imageData[index + 1];     // Accumulating green
+                    redSum += imageData[index + 2];       // Accumulating red
+                    count++;                               // Counting pixels
                 }
             }
-
-            // Uœrednianie wartoœci RGB i zapis do tymczasowej tablicy
+            // Averaging value of RGB and loading them to temporary array
             if (count > 0) {
-                int blurredIndex = y * stride + x * bytesPerPixel; // Indeks w tablicy rozmytych pikseli
-                blurredData[blurredIndex] = blueSum / count; // Niebieski
-                blurredData[blurredIndex + 1] = greenSum / count; // Zielony
-                blurredData[blurredIndex + 2] = redSum / count; // Czerwony
+                int blurredIndex = y * stride + x * bytesPerPixel; // Array index
+                blurredData[blurredIndex] = blueSum / count; // Blue
+                blurredData[blurredIndex + 1] = greenSum / count; // Green
+                blurredData[blurredIndex + 2] = redSum / count; // Red
             }
         }
     }
-
-    // Przenosimy rozmyte piksele do oryginalnych danych obrazu
+    // Moving blured pixels to original image data
     for (int y = 0; y < height; y++) {
         for (int x = startX; x < endX; x++) {
-            int blurredIndex = y * stride + x * bytesPerPixel; // Indeks w tablicy rozmytych pikseli
-            int originalIndex = y * stride + x * bytesPerPixel; // Indeks w tablicy oryginalnych pikseli
+            int blurredIndex = y * stride + x * bytesPerPixel; // blurred pixel array index
+            int originalIndex = y * stride + x * bytesPerPixel; // original pixel array index
 
             // Przypisujemy rozmyte wartoœci do oryginalnej tablicy
-            imageData[originalIndex] = blurredData[blurredIndex]; // Niebieski
-            imageData[originalIndex + 1] = blurredData[blurredIndex + 1]; // Zielony
-            imageData[originalIndex + 2] = blurredData[blurredIndex + 2]; // Czerwony
+            imageData[originalIndex] = blurredData[blurredIndex]; // Blue
+            imageData[originalIndex + 1] = blurredData[blurredIndex + 1]; // Green  
+            imageData[originalIndex + 2] = blurredData[blurredIndex + 2]; // Red
         }
     }
-
-    free(blurredData); // Zwalniamy pamiêæ
+    free(blurredData); // Freeing memory
 }

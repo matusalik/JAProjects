@@ -3,17 +3,19 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 namespace MotionBlurFilter
 {
     class Program
     {       
         static void Main(string[] args)
         {
+            Stopwatch stopwatch = new Stopwatch();
             //PC
             Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
             //Laptop
             //Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
-            int numberOfThreads = 10;
+            int numberOfThreads = 4;
             int radius = 5;
             int width = bitmap.Width;
             int height = bitmap.Height;
@@ -21,7 +23,9 @@ namespace MotionBlurFilter
             BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
             IntPtr ptr = bmpData.Scan0;
             Thread[] threads = new Thread[numberOfThreads];
-            for (int i = 0; i < numberOfThreads; i++){
+            stopwatch.Start();
+            for (int i = 0; i < numberOfThreads; i++)
+            {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
                 threads[i] = new Thread(() => ProcessChunkC(ptr, startX, endX, width, height, radius));
@@ -31,8 +35,9 @@ namespace MotionBlurFilter
             {
                 thread.Join();
             }
-            Console.WriteLine("All threads finished!");
             bitmap.UnlockBits(bmpData);
+            stopwatch.Stop();
+            Console.WriteLine("All threads finished in " + stopwatch.ElapsedMilliseconds + "ms!");          
             bitmap.Save("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\blurred_dog.jpg", ImageFormat.Jpeg);
         }
         //PC
