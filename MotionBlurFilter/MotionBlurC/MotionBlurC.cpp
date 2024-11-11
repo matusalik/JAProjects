@@ -1,11 +1,8 @@
 #include "pch.h"
 #include "MotionBlurC.h"
-void ApplyMotionBlur(uint8_t* imageData, int startX, int endX, int width, int height, int radius) {
+void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, int width, int height, int radius) {
     int bytesPerPixel = 3; // 3 bytes per pixel for RGB
     int stride = width * bytesPerPixel; // length of one row in data array
-    // Temporary array for blurred pixels
-    uint8_t* blurredData = (uint8_t*)malloc(height * stride);
-    if (!blurredData) return; // Checking if allocating memory was succesful
     // Processing an image in vertical stripes
     for (int x = startX; x < endX; x++) {
         for (int y = 0; y < height; y++) {
@@ -25,9 +22,9 @@ void ApplyMotionBlur(uint8_t* imageData, int startX, int endX, int width, int he
             // Averaging value of RGB and loading them to temporary array
             if (count > 0) {
                 int blurredIndex = y * stride + x * bytesPerPixel; // Array index
-                blurredData[blurredIndex] = blueSum / count; // Blue
-                blurredData[blurredIndex + 1] = greenSum / count; // Green
-                blurredData[blurredIndex + 2] = redSum / count; // Red
+                temp[blurredIndex] = blueSum / count; // Blue
+                temp[blurredIndex + 1] = greenSum / count; // Green
+                temp[blurredIndex + 2] = redSum / count; // Red
             }
         }
     }
@@ -38,10 +35,10 @@ void ApplyMotionBlur(uint8_t* imageData, int startX, int endX, int width, int he
             int originalIndex = y * stride + x * bytesPerPixel; // original pixel array index
 
             // Przypisujemy rozmyte wartoœci do oryginalnej tablicy
-            imageData[originalIndex] = blurredData[blurredIndex]; // Blue
-            imageData[originalIndex + 1] = blurredData[blurredIndex + 1]; // Green  
-            imageData[originalIndex + 2] = blurredData[blurredIndex + 2]; // Red
+            imageData[originalIndex] = temp[blurredIndex]; // Blue
+            imageData[originalIndex + 1] = temp[blurredIndex + 1]; // Green  
+            imageData[originalIndex + 2] = temp[blurredIndex + 2]; // Red
         }
     }
-    free(blurredData); // Freeing memory
+    //free(temp); // Freeing memory
 }
