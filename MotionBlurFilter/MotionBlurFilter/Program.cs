@@ -16,7 +16,7 @@ namespace MotionBlurFilter
             //Laptop
             //Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\dog.jpg");
             Bitmap temp = new Bitmap(bitmap);
-            int numberOfThreads = 4;
+            int numberOfThreads = 1;
             int radius = 25;
             int width = bitmap.Width;
             int height = bitmap.Height;
@@ -31,7 +31,9 @@ namespace MotionBlurFilter
             {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                threads[i] = new Thread(() => ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
+                //threads[i] = new Thread(() => ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
+                //threads[i].Start();
+                threads[i] = new Thread(() => ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
                 threads[i].Start();
             }
             foreach(Thread thread in threads)
@@ -42,26 +44,15 @@ namespace MotionBlurFilter
             stopwatch.Stop();
             Console.WriteLine("All threads finished in " + stopwatch.ElapsedMilliseconds + "ms!");          
             bitmap.Save("C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\blurred_dog.jpg", ImageFormat.Jpeg);
-            int[] arrayA = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            int[] arrayB = { 10, 20, 30, 40, 50, 60, 70, 80 };
-            int[] res = new int[8];
-            int length = arrayA.Length;
-            ProcessChunkASM(arrayA, arrayB, res, length);
         }
         //PC
         [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
         //Laptop
         //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
-        static extern void MyProc1(int[] arrayA, int[]  arrayB, int[] res, int length);
-        static void ProcessChunkASM(int[] arrayA, int[] arrayB, int[] res, int length)
+        static extern void MyProc1(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);
+        static void ProcessChunkASM(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius)
         {
-            MyProc1(arrayA, arrayB, res, length);   
-            Console.Write("RESULT: ");
-            foreach (var value in res)
-            {
-                Console.Write(value + " ");
-            }
-            Console.WriteLine();
+            MyProc1(ptr, tempPtr, startX, endX, width, height, radius);   
         }
         //PC
         [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]

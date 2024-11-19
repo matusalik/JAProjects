@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A4F8CEB0-90DD-4973-81A8-D33B023E3D3B}|MotionBlurFilter\\MotionBlurFilter.csproj|C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\motionblurfilter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4F8CEB0-90DD-4973-81A8-D33B023E3D3B}|MotionBlurFilter\\MotionBlurFilter.csproj|solutionrelative:motionblurfilter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|solutionrelative:MotionBlurASM\\MotionBlurASM.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F26C4BD1-2A1E-4EE4-B4F7-F595C25E65DC}|MotionBlurC\\MotionBlurC.vcxproj|C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurC\\MotionBlurC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F26C4BD1-2A1E-4EE4-B4F7-F595C25E65DC}|MotionBlurC\\MotionBlurC.vcxproj|solutionrelative:MotionBlurC\\MotionBlurC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.def||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|solutionrelative:MotionBlurASM\\MotionBlurASM.def||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{29B9F1EB-1E8F-47FC-A7D4-D182B3C74735}|MotionBlurASM\\MotionBlurASM.vcxproj|solutionrelative:MotionBlurASM\\MotionBlurASM.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A4F8CEB0-90DD-4973-81A8-D33B023E3D3B}|MotionBlurFilter\\MotionBlurFilter.csproj|c:\\users\\mateu\\onedrive\\pulpit\\japrojects\\motionblurfilter\\motionblurfilter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4F8CEB0-90DD-4973-81A8-D33B023E3D3B}|MotionBlurFilter\\MotionBlurFilter.csproj|solutionrelative:motionblurfilter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,41 +30,54 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Program.cs",
+              "RelativeDocumentMoniker": "MotionBlurFilter\\Program.cs",
+              "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Program.cs",
+              "RelativeToolTip": "MotionBlurFilter\\Program.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAQwDYAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T19:31:42.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MotionBlurASM.def",
               "DocumentMoniker": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.def",
               "RelativeDocumentMoniker": "MotionBlurASM\\MotionBlurASM.def",
               "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.def",
               "RelativeToolTip": "MotionBlurASM\\MotionBlurASM.def",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001913|",
               "WhenOpened": "2024-11-11T19:44:23.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MotionBlurASM.asm",
               "DocumentMoniker": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.asm",
               "RelativeDocumentMoniker": "MotionBlurASM\\MotionBlurASM.asm",
               "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurASM\\MotionBlurASM.asm",
               "RelativeToolTip": "MotionBlurASM\\MotionBlurASM.asm",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAEAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-11-11T19:20:41.35Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Program.cs",
-              "RelativeDocumentMoniker": "MotionBlurFilter\\Program.cs",
-              "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Program.cs",
-              "RelativeToolTip": "MotionBlurFilter\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACQAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T19:31:42.49Z",
+              "DocumentIndex": 1,
+              "Title": "MotionBlurC.cpp",
+              "DocumentMoniker": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurC\\MotionBlurC.cpp",
+              "RelativeDocumentMoniker": "MotionBlurC\\MotionBlurC.cpp",
+              "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurC\\MotionBlurC.cpp",
+              "RelativeToolTip": "MotionBlurC\\MotionBlurC.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-18T21:33:19.562Z",
               "EditorCaption": ""
             }
           ]

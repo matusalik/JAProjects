@@ -1,14 +1,38 @@
 .code
-MyProc1 proc
-	mov rax, 0	;index to "move" pointers
-loop_start:
-	movdqu xmm0, [rcx + rax]	;move four 32-bit numbers from arrayA to xmm0
-	movdqu xmm1, [rdx + rax]	;move four 32-bit numbers from arrayB to xmm1
-	paddd xmm0, xmm1			;simultaneously add numbers from arrayA and arrayB
-	movdqu [r8 + rax], xmm0		;save result to outcome array
-	add rax, 16					;move pointer by 16 bytes forward (4 * 32-bit (4 byte) numbers)
-	sub r9, 4					;reduce counter by 4 (we proceesed 4 numbers at once)
-	jnz loop_start				;if not 0 (array not finished) jump back to loop
-	ret
+MyProc1 proc 
+    ;stack pointer
+    push rbp
+    mov rbp, rsp
+
+    ;parameters from registers
+    mov rsi, rcx                ;image data ptr
+    mov rdi, rdx                ;temp data ptr
+    mov rax, r8                 ;startX
+    mov rbx, r9                 ;endX
+
+    ;parameters from stack
+    mov rcx, [rsp + 40]         ;width  
+    mov rdx, [rsp + 48]         ;height
+    mov r10, [rsp + 56]         ;radius
+
+    ;calculating stride and loading it to r11
+    mov r11, rcx
+    mov r12, 3
+    imul r11, r12
+
+    ;calculating move index for xmm
+    mov r12, rax
+    mov r13, 3
+    imul r12, r13
+
+ProcessCollumns:
+    cmp rax, rbx
+    jge EndFunc
+
+
+EndFunc:
+    mov rsp, rbp 
+    pop rbp
+    ret
 MyProc1 endp
 end
