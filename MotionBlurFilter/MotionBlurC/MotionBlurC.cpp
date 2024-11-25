@@ -40,5 +40,4 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
             imageData[originalIndex + 2] = temp[blurredIndex + 2]; // Red
         }
     }
-    //free(temp); // Freeing memory
 }

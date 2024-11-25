@@ -1,6 +1,7 @@
 .data
 bytesPerPixel dq 3
 brightArray db 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0
+pixeArray db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 .code
 MyProc1 proc 
@@ -9,38 +10,35 @@ MyProc1 proc
     mov rbp, rsp
 
     ;parameters from registers
-    mov rsi, rcx                ;image data ptr
-    mov rdi, rdx                ;temp data ptr
-    mov rax, r8                 ;startX
-    mov rbx, r9                 ;endX
+    ;rcx - image data ptr
+    ;rdx - temp data ptr
+    ;r8 - startX
+    ;r9 - endX
 
     ;parameters from stack
-    mov rcx, [rsp + 48]         ;width  
-    mov rdx, [rsp + 56]         ;height
-    mov r10, [rsp + 64]         ;radius
+    mov r10, [rsp + 48]         ;width  
+    mov r11, [rsp + 56]         ;height
+    mov r12, [rsp + 64]         ;radius
 
-    ;calculating stride and loading it to r11
-    mov r11, rcx
-    imul r11, [bytesPerPixel]
+    ;calculating stride and loading it to r13
+    mov r13, r10
+    imul r13, [bytesPerPixel]
 
     ;loading bright array to xmm2
     movdqu xmm2, xmmword ptr[brightArray]
 
-    ;Moving counter
-    mov r9, 0
-
-    ;Total size of pixel array (in bytes)
-    mov r12, rcx
-    imul r12, rdx
-    imul r12, [bytesPerPixel]
+    ;Total size from startX to endX (in bytes) - CHUNK size
+    mov r14, r9
+    imul r14, r11
+    imul r14, [bytesPerPixel]
 
 ProcessChunk:
-    cmp r12, r9
+    cmp r14, r8
     js EndFunc
-    movdqu xmm1, [rsi + r9] 
+    movdqu xmm1, [rcx + r8] 
     paddb xmm1, xmm2
-    movdqu [rdi + r9], xmm1
-    add r9, 15
+    movdqu [rdx + r8], xmm1
+    add r8, 15
     jmp ProcessChunk
 
 EndFunc:

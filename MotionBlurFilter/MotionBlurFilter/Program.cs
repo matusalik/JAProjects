@@ -16,7 +16,7 @@ namespace MotionBlurFilter
             //Laptop
             Bitmap bitmap = new Bitmap("C:\\Users\\mateu\\Desktop\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Resources\\test.jpg");
             Bitmap temp = new Bitmap(bitmap);
-            int numberOfThreads = 1;
+            int numberOfThreads = 4;
             int radius = 25;
             int width = bitmap.Width;
             int height = bitmap.Height;
