@@ -1,7 +1,6 @@
 .data
-Brightness DWORD 30
 bytesPerPixel dq 3
-offsetCount dq 0 
+brightArray db 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0
 
 .code
 MyProc1 proc 
@@ -16,45 +15,33 @@ MyProc1 proc
     mov rbx, r9                 ;endX
 
     ;parameters from stack
-    mov rcx, [rsp + 40]         ;width  
-    mov rdx, [rsp + 48]         ;height
-    mov r10, [rsp + 56]         ;radius
+    mov rcx, [rsp + 48]         ;width  
+    mov rdx, [rsp + 56]         ;height
+    mov r10, [rsp + 64]         ;radius
 
     ;calculating stride and loading it to r11
     mov r11, rcx
     imul r11, [bytesPerPixel]
 
-    ;calculating move index for xmm
-    mov r12, rax
+    ;loading bright array to xmm2
+    movdqu xmm2, xmmword ptr[brightArray]
+
+    ;Moving counter
+    mov r9, 0
+
+    ;Total size of pixel array (in bytes)
+    mov r12, rcx
+    imul r12, rdx
     imul r12, [bytesPerPixel]
 
-    movd xmm1, Brightness
-    pshufd xmm1, xmm1, 0
-
-    ;Calculating total bytes
-    mov r14, rcx
-    imul r14, rdx
-    imul r14, [bytesPerPixel]
-
-    ;Offset for copying pixels
-    mov r13, 0
-
-ProcessCollumns:
-    cmp r12, rbx
-    jge CopyPixels
-    movups xmm0, [rsi + r12]
-    paddusb xmm0, xmm1
-    movups [rdi + r12], xmm0
-    add r12, 12
-    jmp ProcessCollumns
-
-CopyPixels:
-    cmp r13, r14
-    jge EndFunc
-    mov al, [rdi + r13]
-    mov[rsi + r13], al
-    inc r13
-    jmp CopyPixels
+ProcessChunk:
+    cmp r12, r9
+    js EndFunc
+    movdqu xmm1, [rsi + r9] 
+    paddb xmm1, xmm2
+    movdqu [rdi + r9], xmm1
+    add r9, 15
+    jmp ProcessChunk
 
 EndFunc:
     mov rsp, rbp 
