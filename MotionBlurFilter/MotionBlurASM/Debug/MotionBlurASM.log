@@ -1,0 +1,32 @@
+﻿  Assembling MotionBlurASM.asm...
+MotionBlurASM.asm(1): error A2013: .MODEL must precede this directive
+MotionBlurASM.asm(2): error A2034: must be in segment block
+MotionBlurASM.asm(3): error A2034: must be in segment block
+MotionBlurASM.asm(4): error A2034: must be in segment block
+MotionBlurASM.asm(6): error A2013: .MODEL must precede this directive
+MotionBlurASM.asm(7): error A2034: must be in segment block : MyProc1
+MotionBlurASM.asm(9): error A2034: must be in segment block
+MotionBlurASM.asm(10): error A2034: must be in segment block
+MotionBlurASM.asm(19): error A2034: must be in segment block
+MotionBlurASM.asm(20): error A2034: must be in segment block
+MotionBlurASM.asm(21): error A2034: must be in segment block
+MotionBlurASM.asm(24): error A2034: must be in segment block
+MotionBlurASM.asm(25): error A2034: must be in segment block
+MotionBlurASM.asm(28): error A2034: must be in segment block
+MotionBlurASM.asm(31): error A2034: must be in segment block
+MotionBlurASM.asm(32): error A2034: must be in segment block
+MotionBlurASM.asm(33): error A2034: must be in segment block
+MotionBlurASM.asm(35): error A2034: must be in segment block
+MotionBlurASM.asm(36): error A2034: must be in segment block
+MotionBlurASM.asm(37): error A2034: must be in segment block
+MotionBlurASM.asm(38): error A2034: must be in segment block
+MotionBlurASM.asm(39): error A2034: must be in segment block
+MotionBlurASM.asm(40): error A2034: must be in segment block
+MotionBlurASM.asm(41): error A2034: must be in segment block
+MotionBlurASM.asm(42): error A2034: must be in segment block
+MotionBlurASM.asm(44): error A2034: must be in segment block
+MotionBlurASM.asm(45): error A2034: must be in segment block
+MotionBlurASM.asm(46): error A2034: must be in segment block
+MotionBlurASM.asm(47): error A2034: must be in segment block
+MotionBlurASM.asm(48): fatal error A1010: unmatched block nesting : MyProc1
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml.exe /c /nologo /Zi /Fo"Debug\MotionBlurASM.obj" /W3 /errorReport:prompt  /TaMotionBlurASM.asm zostało zakończone; kod błędu: 1.

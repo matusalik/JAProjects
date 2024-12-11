@@ -3,6 +3,7 @@
 void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, int width, int height, int radius) {
     int bytesPerPixel = 3; // 3 bytes per pixel for RGB
     int stride = width * bytesPerPixel; // length of one row in data array
+    int divisorCount = (radius * 2) + 1; 
     // Processing an image in vertical stripes
     for (int x = startX; x < endX; x++) {
         for (int y = 0; y < height; y++) {
@@ -22,9 +23,9 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
             // Averaging value of RGB and loading them to temporary array
             if (count > 0) {
                 int blurredIndex = y * stride + x * bytesPerPixel; // Array index
-                temp[blurredIndex] = blueSum / count; // Blue
-                temp[blurredIndex + 1] = greenSum / count; // Green
-                temp[blurredIndex + 2] = redSum / count; // Red
+                temp[blurredIndex] = blueSum / divisorCount; // Blue
+                temp[blurredIndex + 1] = greenSum / divisorCount; // Green
+                temp[blurredIndex + 2] = redSum / divisorCount; // Red
             }
         }
     }
