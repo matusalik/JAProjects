@@ -13,18 +13,18 @@ namespace MotionBlurFilter
         {
             Stopwatch stopwatch = new Stopwatch();
             //PC
-            String imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "dog.jpg");  
+            String imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "setter.jpg");  
             Bitmap bitmap = new Bitmap(imagePath);
             Bitmap temp = new Bitmap(bitmap);
-            int numberOfThreads = 4;
-            int radius = 25;
+            int numberOfThreads = 1;
+            int radius = 5;
             float reciprocal = 1f / ((radius * 2) + 1);
             int width = bitmap.Width;
             int height = bitmap.Height;
             int chunkWidth = width / numberOfThreads;
-            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             IntPtr ptr = bmpData.Scan0;
-            BitmapData tempData = temp.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            BitmapData tempData = temp.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             IntPtr tempPtr = tempData.Scan0;
             Thread[] threads = new Thread[numberOfThreads];
             stopwatch.Start();
