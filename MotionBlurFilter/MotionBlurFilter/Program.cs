@@ -32,7 +32,7 @@ namespace MotionBlurFilter
             {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                threads[i] = new Thread(() => ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
+                threads[i] = new Thread(() => ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
                 threads[i].Start();
             }
             foreach(Thread thread in threads)
