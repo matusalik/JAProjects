@@ -20,3 +20,14 @@ C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Rele
 C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBl.5D2B93EE.Up2Date
 C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.exe
 C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.pdb
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\MotionBlurFilter.exe.config
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\MotionBlurFilter.exe
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\MotionBlurFilter.pdb
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\System.Drawing.Common.dll
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\System.Drawing.Common.pdb
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\bin\x64\Release\System.Drawing.Common.xml
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.csproj.AssemblyReference.cache
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.csproj.CoreCompileInputs.cache
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBl.5D2B93EE.Up2Date
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.exe
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurFilter\obj\x64\Release\MotionBlurFilter.pdb

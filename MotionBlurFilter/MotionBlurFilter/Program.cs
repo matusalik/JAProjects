@@ -46,7 +46,7 @@ namespace MotionBlurFilter
             temp.Save(outputImage, ImageFormat.Jpeg);
         }
         //PC
-        [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
+        [DllImport(@"C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
         //Laptop
         //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurASM.dll")]
         static extern void MyProc1(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);
@@ -55,7 +55,7 @@ namespace MotionBlurFilter
             MyProc1(ptr, tempPtr, startX, endX, width, height, radius);   
         }
         //PC
-        [DllImport(@"C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
+        [DllImport(@"C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
         //Laptop
         //[DllImport(@"C:\Users\mateu\Desktop\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll")]
         static extern void ApplyMotionBlur(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);

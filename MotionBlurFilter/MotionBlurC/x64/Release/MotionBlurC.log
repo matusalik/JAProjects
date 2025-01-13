@@ -1,13 +1,15 @@
-﻿  MotionBlurC.cpp
-C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.cpp(3,6): warning C4273: "ApplyMotionBlur": niespójne powiązanie biblioteki dll
+﻿  pch.cpp
+  dllmain.cpp
+  MotionBlurC.cpp
+C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.cpp(3,6): warning C4273: "ApplyMotionBlur": niespójne powiązanie biblioteki dll
   (kompilowanie pliku źródłowego „/MotionBlurC.cpp”)
-      C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.h(8,33):
+      C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.h(8,33):
       zobacz poprzednią definicję „ApplyMotionBlur”
   
-     Trwa tworzenie biblioteki C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.lib i obiektu C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.exp
+     Trwa tworzenie biblioteki C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.lib i obiektu C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.exp
   Trwa generowanie kodu
-  1 of 2 functions (50.0%) were compiled, the rest were copied from previous compilation.
+  2 of 2 functions (100.0%) were compiled.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
-  MotionBlurC.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.dll
+  MotionBlurC.vcxproj -> C:\Users\Zuza\Desktop\JAProjects\MotionBlurFilter\x64\Release\MotionBlurC.dll
