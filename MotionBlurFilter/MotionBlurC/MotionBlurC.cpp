@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MotionBlurC.h"
 void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, int width, int height, int radius) {
-    int bytesPerPixel = 4; // 3 bytes per pixel for RGB
+    int bytesPerPixel = 4; // 4 bytes per pixel for RGB
     int stride = width * bytesPerPixel; // length of one row in data array
     int divisorCount = (radius * 2) + 1; 
     // Processing an image in vertical stripes
@@ -21,7 +21,7 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
                 }
             }
             // Averaging value of RGB and loading them to temporary array
-            if (count > 0) {
+            if (count == divisorCount) {
                 int blurredIndex = y * stride + x * bytesPerPixel; // Array index
                 temp[blurredIndex] = blueSum / divisorCount; // Blue
                 temp[blurredIndex + 1] = greenSum / divisorCount; // Green

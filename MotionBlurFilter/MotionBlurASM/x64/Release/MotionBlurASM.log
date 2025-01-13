@@ -1,1 +1,4 @@
-﻿  MotionBlurASM.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurASM.dll
+﻿  Assembling MotionBlurASM.asm...
+     Trwa tworzenie biblioteki C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurASM.lib i obiektu C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurASM.exp
+  LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
+  MotionBlurASM.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Release\MotionBlurASM.dll

@@ -1,6 +1,5 @@
 .data
 bytesPerPixel dq 4
-brightArray db 40, 40, 40, 0, 40, 40, 40, 0, 40, 40, 40, 0, 40, 40, 40, 0
 ByteArray db 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0
 ByteArray_2 db 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0
 ByteArray_3 db 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0
@@ -17,26 +16,37 @@ Stride dq 0
 .code
 MyProc1 proc 
     ;stack pointer
+    ;push rbp
+    ;mov rbp, rsp
+
+    ;parameters from stack
+    mov r10, [rsp + 40] ;Width
+    dec r10
+    mov [Width_], r10
+    inc r10
+    mov r11, [rsp + 48] ;Height
+    mov [Height], r11
+
+    push rbx
     push rbp
-    mov rbp, rsp
+    push rdi
+    push rsi
+    push r12
+    push r13
+    push r14
+    push r15
 
     ;parameters from registers
     mov rsi, rcx    ;Source data
     mov rdi, rdx    ;Destination data
     ;r8 - startX
     ;r9 - endX
-
-    ;parameters from stack
-    mov r10, [rsp + 48] ;Width
-    mov [Width_], r10
-    mov r11, [rsp + 56] ;Height
-    mov [Height], r11
     
     ;Couters
     mov r12, 0
 
-    ;Height - 6 to not go out of the bitmap
-    sub r11, 6
+    ;Height - 5 to not go out of the bitmap
+    sub r11, 5
 
     ;Calculating Stride
     mov rax, r10
@@ -139,11 +149,17 @@ OuterInc:
     inc r12
     jmp OuterLoop
 
-
-
 EndFunc:
-    mov rsp, rbp 
+    ;mov rsp, rbp 
+    ;pop rbp
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop rsi
+    pop rdi
     pop rbp
+    pop rbx
     ret
 MyProc1 endp
 end

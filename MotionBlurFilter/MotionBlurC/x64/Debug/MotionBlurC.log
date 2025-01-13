@@ -1,3 +1,7 @@
 ﻿  MotionBlurC.cpp
 C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.cpp(3,6): warning C4273: "ApplyMotionBlur": niespójne powiązanie biblioteki dll
+  (kompilowanie pliku źródłowego „/MotionBlurC.cpp”)
+      C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\MotionBlurC\MotionBlurC.h(8,33):
+      zobacz poprzednią definicję „ApplyMotionBlur”
+  
   MotionBlurC.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilter\x64\Debug\MotionBlurC.dll

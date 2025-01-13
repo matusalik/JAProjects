@@ -15,10 +15,9 @@ namespace MotionBlurFilter
             //PC
             String imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "setter.jpg");  
             Bitmap bitmap = new Bitmap(imagePath);
-            Bitmap temp = new Bitmap(bitmap);
+            Bitmap temp = new Bitmap(bitmap.Width, bitmap.Height);
             int numberOfThreads = 1;
             int radius = 5;
-            float reciprocal = 1f / ((radius * 2) + 1);
             int width = bitmap.Width;
             int height = bitmap.Height;
             int chunkWidth = width / numberOfThreads;
@@ -32,7 +31,7 @@ namespace MotionBlurFilter
             {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                threads[i] = new Thread(() => ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
+                threads[i] = new Thread(() => ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
                 threads[i].Start();
             }
             foreach(Thread thread in threads)
