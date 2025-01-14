@@ -1,20 +1,10 @@
 .data
 bytesPerPixel dq 4
-ByteArray db 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0
-ByteArray_2 db 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0
-ByteArray_3 db 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0
-ShuffleArray db 0,4,8,12,1,2,3,5,6,7,9,10,11,13,14,15
-ShuffleArray_2 db 0,1,2,3,8,9,10,11,12,13,14,15
 DivArray dd 11, 11, 11, 11
-
-
+;Odwrotnosc_ dq 1_11, 1_11, 1_11, 1_11
 
 .code
 MyProc1 proc 
-    ;stack pointer
-    ;push rbp
-    ;mov rbp, rsp
-
     ;parameters from stack
     mov r10, [rsp + 40] ;Width
     mov r11, [rsp + 48] ;Height
@@ -34,25 +24,31 @@ MyProc1 proc
     ;r8 - startX
     ;r9 - endX
 
-
-    ;Height - 5 to not go out of the bitmap
-    sub r11, 5
-
     ;Calculating Stride
     mov rax, r10
     shl rax, 2
     mov r10, rax
-
-
-
-OuterLoop:
-    cmp r8, r9
-    jge EndFunc
+    ;Height - 5 to not go out of the bitmap
+    sub r11, 5
     mov r13, 5
+    mov rcx, r8
+OuterLoop:    
+    cmp r13, r11    
+    je EndFunc
+    mov r8, rcx
     
 InnerLoop:
-    cmp r13, r11    
-    jge OuterInc   
+    cmp r9, r8
+    je OuterInc   
+    dec r8
+    cmp r8, r9
+    je Decrement
+    inc r8
+    jmp Back
+Decrement:
+    dec r8
+    dec r8
+Back:
     mov r14, r8
     shl r14, 2
     mov rax, r13
@@ -66,22 +62,16 @@ InnerLoop:
     imul rax, rax, 5
     sub r14, rax
     movdqu xmm0, xmmword ptr [rsi + r14]
-    movdqu xmm1, xmmword ptr [ByteArray]
-    movdqu xmm5, xmmword ptr [ByteArray_2]
-    pand xmm0, xmm1
-    punpcklbw xmm0, xmm0
-    pand xmm0, xmm5
+    pmovzxbw xmm0, xmm0
     mov r15, 0
 
 AddValues:
     cmp r15, 10
-    jz Continue
-    mov rax, r10
-    add r14, rax
-    movdqu xmm2, xmmword ptr [rsi + r14]
-    pand xmm2, xmm1
-    punpcklbw xmm2, xmm2
-    pand xmm2, xmm5
+    je Continue
+    add r14, r10
+    movdqu xmm2, xmmword ptr [rsi + r14 - 8]
+    movhlps xmm2, xmm2
+    pmovzxbw xmm2, xmm2
     paddw xmm0, xmm2
     inc r15
     jmp AddValues
@@ -89,70 +79,36 @@ AddValues:
 Continue:
     pxor xmm2, xmm2
     movhlps xmm2, xmm0
-    pand xmm0, xmm1
     movdqu xmm3, xmmword ptr [DivArray]
-    punpcklwd xmm2, xmm2  
-    punpcklwd xmm0, xmm0 
-    movdqu xmm5, xmmword ptr [ByteArray_3]
-    pand xmm2, xmm5
-    pand xmm0, xmm5
-    divps xmm0, xmm3
-    divps xmm2, xmm3
-    CVTPS2DQ xmm0, xmm0
-    CVTPS2DQ xmm2, xmm2
-    movdqu xmm5, xmmword ptr [ShuffleArray]
-    pshufb xmm0, xmm5
-    pshufb xmm2, xmm5
-    movlhps xmm0, xmm2
-    movdqu xmm5, xmmword ptr [ShuffleArray_2]
-    pshufb xmm0, xmm5
-    pand xmm0, xmm1
-    mov r14, r12
-    PEXTRB rax, xmm0, 0
-	mov byte ptr [rdi + r14], al
-    inc r14
-	PEXTRB rax, xmm0, 1
-	mov byte ptr [rdi + r14], al
-	inc r14
-	PEXTRB rax, xmm0, 2
-	mov byte ptr [rdi + r14], al
-	inc r14
-	mov al, byte ptr [rsi + r14]
-	mov byte ptr [rdi + r14], al
-
-    mov rbx, r8
-    add rbx, 2
-    add rbx, r13
-    mov r15, r9
-    add r15, r11
-    cmp rbx, r15
-    jz InnerInc
-    inc r14
-    PEXTRB rax, xmm0, 4
-	mov byte ptr [rdi + r14], al
-	inc r14
-	PEXTRB rax, xmm0, 5
-	mov byte ptr [rdi + r14], al
-	inc r14
-	PEXTRB rax, xmm0, 6
-	mov byte ptr [rdi + r14], al
-    inc r14
-	mov al, byte ptr [rsi + r14]
-	mov byte ptr [rdi + r14], al
-
+    pmovzxwd xmm2,xmm2 
+    pmovzxwd xmm0,xmm0
     
+    divps xmm0, xmm3    ;dzielenie
+    divps xmm2, xmm3
+    ;pmulld xmm0, xmm3
+    ;pmulld xmm2, xmm3
+    CVTPS2DQ xmm0, xmm0 ;konwersja z float do int
+    CVTPS2DQ xmm2, xmm2
+    packusdw xmm0,xmm0
+    packusdw xmm2,xmm2
+    movlhps xmm0, xmm2
+    packuswb xmm0, xmm0
+    movq rax, xmm0
+    mov r14, r12
+	mov qword ptr [rdi + r14], rax
+    mov al, 255
+    mov [rdi + r14 + 3], al
+    mov [rdi + r14 + 7], al
 
 InnerInc:
-    inc r13
+    add r8, 2
     jmp InnerLoop
 
 OuterInc:
-    inc r8
+    inc r13
     jmp OuterLoop
 
 EndFunc:
-    ;mov rsp, rbp 
-    ;pop rbp
     pop r15
     pop r14
     pop r13

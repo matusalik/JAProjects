@@ -11,5 +11,6 @@
 #include<stdint.h>
 #include<stdlib.h>
 #include "framework.h"
+#include <algorithm>
 
 #endif //PCH_H
