@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\MotionBlurFilterGUI.csproj",
+      "projectUniqueName": "C:\\Users\\mateu\\OneDrive\\Pulpit\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\MotionBlurFilterGUI.csproj",
       "projectName": "MotionBlurFilterGUI",
-      "projectPath": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\MotionBlurFilterGUI.csproj",
+      "projectPath": "C:\\Users\\mateu\\OneDrive\\Pulpit\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\MotionBlurFilterGUI.csproj",
       "packagesPath": "C:\\Users\\mateu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\JAProjects-381ad5c6f3c39b29c5c09a806749a654ae242406\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\obj\\",
+      "outputPath": "C:\\Users\\mateu\\OneDrive\\Pulpit\\MotionBlurFilterGUI\\MotionBlurFilterGUI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

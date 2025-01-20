@@ -1,0 +1,14 @@
+﻿  pch.cpp
+  dllmain.cpp
+  MotionBlurC.cpp
+C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilterGUI\MotionBlurC\MotionBlurC.cpp(3,6): warning C4273: "ApplyMotionBlur": niespójne powiązanie biblioteki dll
+  (kompilowanie pliku źródłowego „/MotionBlurC.cpp”)
+      C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilterGUI\MotionBlurC\MotionBlurC.h(8,33):
+      zobacz poprzednią definicję „ApplyMotionBlur”
+  
+     Trwa tworzenie biblioteki C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilterGUI\x64\Release\MotionBlurC.lib i obiektu C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilterGUI\x64\Release\MotionBlurC.exp
+  Trwa generowanie kodu
+  Previous IPDB not found, fall back to full compilation.
+  All 2 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  MotionBlurC.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\MotionBlurFilterGUI\x64\Release\MotionBlurC.dll

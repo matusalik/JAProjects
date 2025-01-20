@@ -1,6 +1,7 @@
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace MotionBlurFilterGUI
 {
@@ -24,6 +25,8 @@ namespace MotionBlurFilterGUI
             SourcePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             Bitmap SetterImage = new Bitmap(this.sourcePath);
             SourcePicture.Image = SetterImage;
+
+            OutcomePicture.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void NewSourceButton_Click(object sender, EventArgs e)
@@ -64,16 +67,19 @@ namespace MotionBlurFilterGUI
             {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                //threads[i] = new Thread(() => ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
-                //threads[i].Start();
+                threads[i] = new Thread(() => Program.ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
+                threads[i].Start();
             }
-            //foreach (Thread thread in threads)
-            //{
-            //    thread.Join();
-            //}
+            foreach (Thread thread in threads)
+            {
+                thread.Join();
+            }
             sourceBitmap.UnlockBits(bmpData);
             tempBitmap.UnlockBits(tempData);
             stopwatch.Stop();
+            String outputImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "blurredDog.jpg");
+            tempBitmap.Save(outputImage, ImageFormat.Jpeg);
+            OutcomePicture.Image = tempBitmap;
             TimeValueLabel.Text = stopwatch.ElapsedMilliseconds.ToString() + "ms";
         }
     }

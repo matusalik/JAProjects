@@ -71,6 +71,7 @@
             SourcePicture.Size = new Size(355, 220);
             SourcePicture.TabIndex = 0;
             SourcePicture.TabStop = false;
+            SourcePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // panel2
             // 
@@ -89,6 +90,7 @@
             OutcomePicture.Size = new Size(355, 220);
             OutcomePicture.TabIndex = 2;
             OutcomePicture.TabStop = false;
+            OutcomePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // SourceLabel
             // 
@@ -117,6 +119,7 @@
             ArrowPicture.Size = new Size(65, 48);
             ArrowPicture.TabIndex = 4;
             ArrowPicture.TabStop = false;
+            ArrowPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // NewSourceButton
             // 

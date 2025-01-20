@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MotionBlurFilterGUI": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
