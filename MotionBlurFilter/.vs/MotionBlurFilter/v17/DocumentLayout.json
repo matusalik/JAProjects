@@ -45,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
@@ -57,8 +57,7 @@
               "RelativeToolTip": "MotionBlurC\\MotionBlurC.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAACGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-20T23:19:20.454Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T23:19:20.454Z"
             },
             {
               "$type": "Document",
@@ -70,8 +69,7 @@
               "RelativeToolTip": "MotionBlurC\\framework.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-20T23:19:16.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T23:19:16.747Z"
             },
             {
               "$type": "Document",
@@ -83,12 +81,7 @@
               "RelativeToolTip": "MotionBlurC\\pch.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-20T23:19:03.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+              "WhenOpened": "2025-01-20T23:19:03.155Z"
             },
             {
               "$type": "Document",
@@ -100,8 +93,7 @@
               "RelativeToolTip": "MotionBlurASM\\MotionBlurASM.def",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001913|",
-              "WhenOpened": "2025-01-20T22:06:31.172Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T22:06:31.172Z"
             },
             {
               "$type": "Document",
@@ -125,8 +117,7 @@
               "RelativeToolTip": "MotionBlurC\\pch.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-14T19:14:35.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T19:14:35.341Z"
             },
             {
               "$type": "Document",
@@ -138,8 +129,7 @@
               "RelativeToolTip": "MotionBlurASM\\MotionBlurASM.asm",
               "ViewState": "AgIAAFIAAAAAAAAAAAAIwHkAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-14T19:08:05.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T19:08:05.669Z"
             },
             {
               "$type": "Document",
@@ -151,8 +141,7 @@
               "RelativeToolTip": "MotionBlurC\\MotionBlurC.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-14T17:42:45.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T17:42:45.819Z"
             },
             {
               "$type": "Document",
@@ -162,7 +151,7 @@
               "RelativeDocumentMoniker": "MotionBlurFilter\\Program.cs",
               "ToolTip": "C:\\Users\\mateu\\OneDrive\\Pulpit\\JAProjects\\MotionBlurFilter\\MotionBlurFilter\\Program.cs",
               "RelativeToolTip": "MotionBlurFilter\\Program.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwC8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwDcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-21T19:31:42.49Z",
               "EditorCaption": ""

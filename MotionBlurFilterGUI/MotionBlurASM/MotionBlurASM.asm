@@ -6,8 +6,10 @@ DivArray dd 11, 11, 11, 11
 .code
 MyProc1 proc 
     ;parameters from stack
-    mov r10, [rsp + 40] ;Width
-    mov r11, [rsp + 48] ;Height
+    xor r10, r10
+    mov r10d, [rsp + 40] ;Width
+    xor r11, r11
+    mov r11d, [rsp + 48] ;Height
 
     push rbx
     push rbp
