@@ -13,7 +13,7 @@ namespace MotionBlurFilter
         {
             Stopwatch stopwatch = new Stopwatch();
             //PC
-            String imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "setter.jpg");  
+            String imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "test4k.jpg");  
             Bitmap bitmap = new Bitmap(imagePath);
             Bitmap temp = new Bitmap(bitmap.Width, bitmap.Height);
             int numberOfThreads = 1;

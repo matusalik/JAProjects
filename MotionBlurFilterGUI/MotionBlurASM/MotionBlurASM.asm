@@ -1,16 +1,17 @@
 .data
-bytesPerPixel dq 4
-DivArray dd 11, 11, 11, 11
-;Odwrotnosc_ dq 1_11, 1_11, 1_11, 1_11
+bytesPerPixel dq 4       ; Liczba bajtów na piksel (4 bajty na piksel w przypadku RGBA)
+DivArray dd 11, 11, 11, 11 ; Tablica wartoœci dzielnika do dzielenia pikseli przez 11
+;Odwrotnosc_ dq 1_11, 1_11, 1_11, 1_11 ; Tablica z odwrotnoœciami liczby 11 (zakomentowana)
 
 .code
-MyProc1 proc 
-    ;parameters from stack
-    xor r10, r10
-    mov r10d, [rsp + 40] ;Width
-    xor r11, r11
-    mov r11d, [rsp + 48] ;Height
+MyProc1 proc
+    ; Pobieranie parametrów ze stosu
+    xor r10, r10             ; Wyzerowanie rejestru r10
+    mov r10d, [rsp + 40]     ; Szerokoœæ obrazu (Width) ze stosu
+    xor r11, r11             ; Wyzerowanie rejestru r11
+    mov r11d, [rsp + 48]     ; Wysokoœæ obrazu (Height) ze stosu
 
+    ; Zapisanie rejestrów na stosie, aby zachowaæ ich wartoœæ
     push rbx
     push rbp
     push rdi
@@ -20,97 +21,95 @@ MyProc1 proc
     push r14
     push r15
 
-    ;parameters from registers
-    mov rsi, rcx    ;Source data
-    mov rdi, rdx    ;Destination data
-    ;r8 - startX
-    ;r9 - endX
+    ; Pobieranie parametrów z rejestrów
+    mov rsi, rcx             ; ród³owe dane obrazu (Source data)
+    mov rdi, rdx             ; Docelowe dane obrazu (Destination data)
+    ; r8 - startX
+    ; r9 - endX
 
-    ;Calculating Stride
-    mov rax, r10
-    shl rax, 2
-    mov r10, rax
-    ;Height - 5 to not go out of the bitmap
+    ; Obliczanie kroku (Stride) obrazu
+    mov rax, r10             ; Kopiowanie szerokoœci obrazu do rax
+    shl rax, 2               ; Mno¿enie szerokoœci przez 4 (liczba bajtów na piksel)
+    mov r10, rax             ; Zapisanie wyniku jako Stride
+    ; Wysokoœæ - 5, aby nie wyjœæ poza bitmapê
     sub r11, 5
-    mov r13, 5
-    mov rcx, r8
+    mov r13, 5               ; Inicjalizacja zmiennej r13 do pêtli zewnêtrznej
+    mov rcx, r8              ; Pocz¹tkowa wartoœæ dla startX
 OuterLoop:    
-    cmp r13, r11    
-    je EndFunc
-    mov r8, rcx
-    
-InnerLoop:
-    cmp r9, r8
-    je OuterInc   
-    dec r8
-    cmp r8, r9
-    je Decrement
-    inc r8
-    jmp Back
-Decrement:
-    dec r8
-    dec r8
-Back:
-    mov r14, r8
-    shl r14, 2
-    mov rax, r13
-    mov rbx, r10
-    mul rbx
-    add r14, rax
-    mov r12, r14
+    cmp r13, r11             ; Sprawdzenie, czy r13 osi¹gnê³o wysokoœæ - 5
+    je EndFunc               ; Wyjœcie z procedury, jeœli r13 >= (Height - 5)
+    mov r8, rcx              ; Resetowanie r8 do pocz¹tkowego startX
 
-    ;Starting moving pixels to xmm registers
-    mov rax, r10
-    imul rax, rax, 5
-    sub r14, rax
-    movdqu xmm0, xmmword ptr [rsi + r14]
-    pmovzxbw xmm0, xmm0
-    mov r15, 0
+InnerLoop:
+    cmp r9, r8               ; Sprawdzenie, czy r8 osi¹gnê³o endX
+    je OuterInc              ; Przejœcie do zwiêkszenia r13, jeœli r8 == endX
+    dec r8                   ; Zmniejszenie r8
+    cmp r8, r9               ; Sprawdzenie warunku
+    je Decrement             ; Jeœli r8 == r9, przejdŸ do Decrement
+    inc r8                   ; Zwiêkszenie r8
+    jmp Back                 ; Powrót do bloku Back
+Decrement:
+    dec r8                   ; Dodatkowe zmniejszenie r8
+    dec r8                   ; Jeszcze jedno zmniejszenie r8
+Back:
+    mov r14, r8              ; Przepisanie wartoœci r8 do r14
+    shl r14, 2               ; Mno¿enie r14 przez 4 (liczba bajtów na piksel)
+    mov rax, r13             ; Kopiowanie r13 do rax (obecny wiersz)
+    mov rbx, r10             ; Wartoœæ Stride
+    mul rbx                  ; Mno¿enie wiersza przez Stride
+    add r14, rax             ; Dodanie przesuniêcia r13 * Stride do r14
+    mov r12, r14             ; Zapisanie przesuniêcia pikseli w r12
+
+    ; Rozpoczêcie przenoszenia pikseli do rejestrów xmm
+    mov rax, r10             ; Stride obrazu
+    imul rax, rax, 5         ; Mno¿enie przez 5
+    sub r14, rax             ; Przesuniêcie w górê o 5 wierszy
+    movdqu xmm0, xmmword ptr [rsi + r14] ; Za³adowanie danych pikseli do xmm0
+    pmovzxbw xmm0, xmm0      ; Konwersja bajtów do 16-bitów
+    mov r15, 0               ; Inicjalizacja licznika r15 dla pêtli dodawania
 
 AddValues:
-    cmp r15, 10
-    je Continue
-    add r14, r10
-    movdqu xmm2, xmmword ptr [rsi + r14 - 8]
-    movhlps xmm2, xmm2
-    pmovzxbw xmm2, xmm2
-    paddw xmm0, xmm2
-    inc r15
-    jmp AddValues
+    cmp r15, 10              ; Sprawdzenie, czy licznik osi¹gn¹³ 10
+    je Continue              ; Przejœcie dalej, jeœli tak
+    add r14, r10             ; Przesuniêcie r14 o Stride w dó³
+    movdqu xmm2, xmmword ptr [rsi + r14 - 8] ; Za³adowanie kolejnych danych pikseli do xmm2
+    movhlps xmm2, xmm2       ; Przesuniêcie górnej po³owy do dolnej
+    pmovzxbw xmm2, xmm2      ; Konwersja bajtów do 16-bitów
+    paddw xmm0, xmm2         ; Dodanie wartoœci pikseli
+    inc r15                  ; Zwiêkszenie licznika
+    jmp AddValues            ; Powrót do pocz¹tku pêtli
 
 Continue:
-    pxor xmm2, xmm2
-    movhlps xmm2, xmm0
-    movdqu xmm3, xmmword ptr [DivArray]
-    pmovzxwd xmm2,xmm2 
-    pmovzxwd xmm0,xmm0
-    
-    divps xmm0, xmm3    ;dzielenie
-    divps xmm2, xmm3
-    ;pmulld xmm0, xmm3
-    ;pmulld xmm2, xmm3
-    CVTPS2DQ xmm0, xmm0 ;konwersja z float do int
-    CVTPS2DQ xmm2, xmm2
-    packusdw xmm0,xmm0
-    packusdw xmm2,xmm2
-    movlhps xmm0, xmm2
-    packuswb xmm0, xmm0
-    movq rax, xmm0
-    mov r14, r12
-	mov qword ptr [rdi + r14], rax
-    mov al, 255
-    mov [rdi + r14 + 3], al
-    mov [rdi + r14 + 7], al
+    pxor xmm2, xmm2          ; Wyzerowanie xmm2
+    movhlps xmm2, xmm0       ; Przesuniêcie górnej po³owy xmm0 do xmm2
+    movdqu xmm3, xmmword ptr [DivArray] ; Za³adowanie tablicy dzielników
+    pmovzxwd xmm2,xmm2       ; Rozszerzenie do 32-bitowych s³ów
+    pmovzxwd xmm0,xmm0       ; Rozszerzenie do 32-bitowych s³ów
+    divps xmm0, xmm3         ; Dzielenie przez dzielniki
+    divps xmm2, xmm3         ; Dzielenie przez dzielniki
+    CVTPS2DQ xmm0, xmm0      ; Konwersja z float do int
+    CVTPS2DQ xmm2, xmm2      ; Konwersja z float do int
+    packusdw xmm0,xmm0       ; Pakowanie 32-bitów do 16-bitów
+    packusdw xmm2,xmm2       ; Pakowanie 32-bitów do 16-bitów
+    movlhps xmm0, xmm2       ; Po³¹czenie danych w xmm0
+    packuswb xmm0, xmm0      ; Pakowanie 16-bitów do bajtów
+    movq rax, xmm0           ; Zapisanie wyniku do rax
+    mov r14, r12             ; Przywrócenie przesuniêcia do r14
+	mov qword ptr [rdi + r14], rax ; Zapisanie wyniku do docelowego obrazu
+    mov al, 255              ; Maksymalna wartoœæ alfa (przezroczystoœæ)
+    mov [rdi + r14 + 3], al  ; Ustawienie wartoœci alfa w pikselu
+    mov [rdi + r14 + 7], al  ; Ustawienie wartoœci alfa w pikselu
 
 InnerInc:
-    add r8, 2
-    jmp InnerLoop
+    add r8, 2                ; Przesuniêcie do nastêpnego piksela
+    jmp InnerLoop            ; Powrót do pocz¹tku pêtli wewnêtrznej
 
 OuterInc:
-    inc r13
-    jmp OuterLoop
+    inc r13                  ; Przejœcie do nastêpnego wiersza
+    jmp OuterLoop            ; Powrót do pocz¹tku pêtli zewnêtrznej
 
 EndFunc:
+    ; Przywracanie wartoœci rejestrów ze stosu
     pop r15
     pop r14
     pop r13
@@ -119,6 +118,6 @@ EndFunc:
     pop rdi
     pop rbp
     pop rbx
-    ret
+    ret                      ; Zakoñczenie procedury
 MyProc1 endp
 end

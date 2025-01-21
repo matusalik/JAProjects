@@ -39,18 +39,17 @@
             ApplyFilterButton = new Button();
             NumberOfThreads = new NumericUpDown();
             ThreadsNumberLabel = new Label();
-            RadiusNumber = new NumericUpDown();
-            RadiusLabel = new Label();
             TimeLabel = new Label();
             panel3 = new Panel();
             TimeValueLabel = new Label();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SourcePicture).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OutcomePicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ArrowPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumberOfThreads).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)RadiusNumber).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,9 +68,9 @@
             SourcePicture.Location = new Point(-2, -2);
             SourcePicture.Name = "SourcePicture";
             SourcePicture.Size = new Size(355, 220);
+            SourcePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             SourcePicture.TabIndex = 0;
             SourcePicture.TabStop = false;
-            SourcePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // panel2
             // 
@@ -88,9 +87,9 @@
             OutcomePicture.Location = new Point(-2, -2);
             OutcomePicture.Name = "OutcomePicture";
             OutcomePicture.Size = new Size(355, 220);
+            OutcomePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             OutcomePicture.TabIndex = 2;
             OutcomePicture.TabStop = false;
-            OutcomePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // SourceLabel
             // 
@@ -117,9 +116,9 @@
             ArrowPicture.Location = new Point(368, 101);
             ArrowPicture.Name = "ArrowPicture";
             ArrowPicture.Size = new Size(65, 48);
+            ArrowPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             ArrowPicture.TabIndex = 4;
             ArrowPicture.TabStop = false;
-            ArrowPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // NewSourceButton
             // 
@@ -163,26 +162,6 @@
             ThreadsNumberLabel.TabIndex = 8;
             ThreadsNumberLabel.Text = "Number Of Threads";
             // 
-            // RadiusNumber
-            // 
-            RadiusNumber.Location = new Point(125, 334);
-            RadiusNumber.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
-            RadiusNumber.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            RadiusNumber.Name = "RadiusNumber";
-            RadiusNumber.Size = new Size(120, 23);
-            RadiusNumber.TabIndex = 9;
-            RadiusNumber.Value = new decimal(new int[] { 5, 0, 0, 0 });
-            // 
-            // RadiusLabel
-            // 
-            RadiusLabel.AutoSize = true;
-            RadiusLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            RadiusLabel.Location = new Point(157, 314);
-            RadiusLabel.Name = "RadiusLabel";
-            RadiusLabel.Size = new Size(47, 17);
-            RadiusLabel.TabIndex = 10;
-            RadiusLabel.Text = "Radius";
-            // 
             // TimeLabel
             // 
             TimeLabel.AutoSize = true;
@@ -208,19 +187,36 @@
             TimeValueLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
             TimeValueLabel.Location = new Point(1, 2);
             TimeValueLabel.Name = "TimeValueLabel";
-            TimeValueLabel.Size = new Size(72, 32);
+            TimeValueLabel.Size = new Size(0, 32);
             TimeValueLabel.TabIndex = 11;
-            TimeValueLabel.Text = "";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(111, 334);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13F);
+            label1.Location = new Point(124, 306);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 25);
+            label1.TabIndex = 14;
+            label1.Text = "Choose dll";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
             Controls.Add(panel3);
             Controls.Add(TimeLabel);
-            Controls.Add(RadiusLabel);
-            Controls.Add(RadiusNumber);
             Controls.Add(ThreadsNumberLabel);
             Controls.Add(NumberOfThreads);
             Controls.Add(ApplyFilterButton);
@@ -238,7 +234,6 @@
             ((System.ComponentModel.ISupportInitialize)OutcomePicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)ArrowPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumberOfThreads).EndInit();
-            ((System.ComponentModel.ISupportInitialize)RadiusNumber).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -259,10 +254,10 @@
         private Button ApplyFilterButton;
         private NumericUpDown NumberOfThreads;
         private Label ThreadsNumberLabel;
-        private NumericUpDown RadiusNumber;
-        private Label RadiusLabel;
         private Label TimeLabel;
         private Panel panel3;
         private Label TimeValueLabel;
+        private ComboBox comboBox1;
+        private Label label1;
     }
 }

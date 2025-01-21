@@ -11,6 +11,7 @@ namespace MotionBlurFilterGUI
         {
             this.newSourceChosen = false;
             InitializeComponent();
+            initComboBox();
             loadImages();
         }
 
@@ -27,6 +28,13 @@ namespace MotionBlurFilterGUI
             SourcePicture.Image = SetterImage;
 
             OutcomePicture.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void initComboBox()
+        {
+            comboBox1.Items.Add("C");
+            comboBox1.Items.Add("Assembly");
+            comboBox1.SelectedIndex = 0;
         }
 
         private void NewSourceButton_Click(object sender, EventArgs e)
@@ -52,7 +60,7 @@ namespace MotionBlurFilterGUI
             Bitmap sourceBitmap = new Bitmap(this.sourcePath);
             Bitmap tempBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
             int numberOfThreads = (int)NumberOfThreads.Value;
-            int radius = (int)RadiusNumber.Value;
+            int radius = 5;
             int width = sourceBitmap.Width;
             int height = sourceBitmap.Height;
             int chunkWidth = width / numberOfThreads;
@@ -62,17 +70,35 @@ namespace MotionBlurFilterGUI
             IntPtr tempPtr = tempData.Scan0;
             Thread[] threads = new Thread[numberOfThreads];
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            for (int i = 0; i < numberOfThreads; i++)
+            if (comboBox1.SelectedIndex == 0)
             {
-                int startX = i * chunkWidth; //Starting point for this thread
-                int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                threads[i] = new Thread(() => Program.ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
-                threads[i].Start();
+                stopwatch.Start();
+                for (int i = 0; i < numberOfThreads; i++)
+                {
+                    int startX = i * chunkWidth; //Starting point for this thread
+                    int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
+                    threads[i] = new Thread(() => Program.ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
+                    threads[i].Start();
+                }
+                foreach (Thread thread in threads)
+                {
+                    thread.Join();
+                }
             }
-            foreach (Thread thread in threads)
+            else if (comboBox1.SelectedIndex == 1)
             {
-                thread.Join();
+                stopwatch.Start();
+                for (int i = 0; i < numberOfThreads; i++)
+                {
+                    int startX = i * chunkWidth; //Starting point for this thread
+                    int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
+                    threads[i] = new Thread(() => Program.ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
+                    threads[i].Start();
+                }
+                foreach (Thread thread in threads)
+                {
+                    thread.Join();
+                }
             }
             sourceBitmap.UnlockBits(bmpData);
             tempBitmap.UnlockBits(tempData);
