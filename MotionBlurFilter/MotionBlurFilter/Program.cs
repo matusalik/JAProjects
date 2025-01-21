@@ -31,7 +31,7 @@ namespace MotionBlurFilter
             {
                 int startX = i * chunkWidth; //Starting point for this thread
                 int endX = (i == numberOfThreads - 1) ? width : (i + 1) * chunkWidth; //End point for this thread
-                threads[i] = new Thread(() => ProcessChunkASM(ptr, tempPtr, startX, endX, width, height, radius));
+                threads[i] = new Thread(() => ProcessChunkC(ptr, tempPtr, startX, endX, width, height, radius));
                 threads[i].Start();
             }
             foreach(Thread thread in threads)
@@ -61,7 +61,6 @@ namespace MotionBlurFilter
         static extern void ApplyMotionBlur(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);
         static void ProcessChunkC(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius)
         {
-            Console.WriteLine("Thread " + startX + " - " + endX + " started.");
             ApplyMotionBlur(ptr, tempPtr, startX, endX, width, height, radius);
         }
     }

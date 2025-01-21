@@ -1,7 +1,6 @@
 .data
 bytesPerPixel dq 4       ; Liczba bajtów na piksel (4 bajty na piksel w przypadku RGBA)
 DivArray dd 11, 11, 11, 11 ; Tablica wartoœci dzielnika do dzielenia pikseli przez 11
-;Odwrotnosc_ dq 1_11, 1_11, 1_11, 1_11 ; Tablica z odwrotnoœciami liczby 11 (zakomentowana)
 
 .code
 MyProc1 proc
@@ -35,6 +34,9 @@ MyProc1 proc
     sub r11, 5
     mov r13, 5               ; Inicjalizacja zmiennej r13 do pêtli zewnêtrznej
     mov rcx, r8              ; Pocz¹tkowa wartoœæ dla startX
+
+    movdqu xmm3, xmmword ptr [DivArray] ; Za³adowanie tablicy dzielników
+
 OuterLoop:    
     cmp r13, r11             ; Sprawdzenie, czy r13 osi¹gnê³o wysokoœæ - 5
     je EndFunc               ; Wyjœcie z procedury, jeœli r13 >= (Height - 5)
@@ -49,8 +51,7 @@ InnerLoop:
     inc r8                   ; Zwiêkszenie r8
     jmp Back                 ; Powrót do bloku Back
 Decrement:
-    dec r8                   ; Dodatkowe zmniejszenie r8
-    dec r8                   ; Jeszcze jedno zmniejszenie r8
+    sub r8, 2
 Back:
     mov r14, r8              ; Przepisanie wartoœci r8 do r14
     shl r14, 2               ; Mno¿enie r14 przez 4 (liczba bajtów na piksel)
@@ -82,7 +83,6 @@ AddValues:
 Continue:
     pxor xmm2, xmm2          ; Wyzerowanie xmm2
     movhlps xmm2, xmm0       ; Przesuniêcie górnej po³owy xmm0 do xmm2
-    movdqu xmm3, xmmword ptr [DivArray] ; Za³adowanie tablicy dzielników
     pmovzxwd xmm2,xmm2       ; Rozszerzenie do 32-bitowych s³ów
     pmovzxwd xmm0,xmm0       ; Rozszerzenie do 32-bitowych s³ów
     divps xmm0, xmm3         ; Dzielenie przez dzielniki

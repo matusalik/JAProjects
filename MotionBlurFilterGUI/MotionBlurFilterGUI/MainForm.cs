@@ -32,6 +32,7 @@ namespace MotionBlurFilterGUI
 
         private void initComboBox()
         {
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.Add("C");
             comboBox1.Items.Add("Assembly");
             comboBox1.SelectedIndex = 0;
@@ -100,9 +101,9 @@ namespace MotionBlurFilterGUI
                     thread.Join();
                 }
             }
-            sourceBitmap.UnlockBits(bmpData);
-            tempBitmap.UnlockBits(tempData);
             stopwatch.Stop();
+            sourceBitmap.UnlockBits(bmpData);
+            tempBitmap.UnlockBits(tempData);   
             String outputImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "blurredDog.jpg");
             tempBitmap.Save(outputImage, ImageFormat.Jpeg);
             OutcomePicture.Image = tempBitmap;
