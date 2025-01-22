@@ -1,4 +1,4 @@
 ﻿  Assembling MotionBlurASM.asm...
-     Trwa tworzenie biblioteki C:\Users\mateu\Desktop\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.lib i obiektu C:\Users\mateu\Desktop\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.exp
+     Trwa tworzenie biblioteki C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.lib i obiektu C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.exp
   LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
-  MotionBlurASM.vcxproj -> C:\Users\mateu\Desktop\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.dll
+  MotionBlurASM.vcxproj -> C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.dll

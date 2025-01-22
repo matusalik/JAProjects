@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MotionBlurFilterGUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f807855fd83d5795a38dbfce674163c72d47983e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4c0a6ea182822fe715b30680d0bf322ab864c94")]
 [assembly: System.Reflection.AssemblyProductAttribute("MotionBlurFilterGUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MotionBlurFilterGUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
