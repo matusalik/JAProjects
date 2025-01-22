@@ -22,17 +22,13 @@ namespace MotionBlurFilterGUI
             workingDirectory = Directory.GetParent(workingDirectory).FullName;
             workingDirectory = Directory.GetParent(workingDirectory).FullName;
             workingDirectory += desiredPart;
-            SetDllDirectory(workingDirectory);
 
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern bool SetDllDirectory(string lpPathName);
-
         //PC
-        [DllImport(@"MotionBlurC.dll")]
+        [DllImport("MotionBlurC.dll", CallingConvention = CallingConvention.StdCall)]
         public static extern void ApplyMotionBlur(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);
         public static void ProcessChunkC(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius)
         {
@@ -40,7 +36,7 @@ namespace MotionBlurFilterGUI
         }
 
         //PC
-        [DllImport(@"MotionBlurASM.dll")]
+        [DllImport("MotionBlurASM.dll", CallingConvention = CallingConvention.StdCall)]
         public static extern void MyProc1(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius);
         public static void ProcessChunkASM(IntPtr ptr, IntPtr tempPtr, int startX, int endX, int width, int height, int radius)
         {

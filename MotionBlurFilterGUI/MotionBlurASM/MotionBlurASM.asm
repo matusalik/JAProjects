@@ -1,6 +1,6 @@
 .data
-bytesPerPixel dq 4       ; Liczba bajtÛw na piksel (4 bajty na piksel w przypadku RGBA)
-DivArray dd 11, 11, 11, 11 ; Tablica wartoúci dzielnika do dzielenia pikseli przez 11
+;DivArray dd 11, 11, 11, 11 ; Tablica wartoúci dzielnika do dzielenia pikseli przez 11
+DivArray dd 0.090909, 0.090909, 0.090909, 0.090909
 
 .code
 MyProc1 proc
@@ -23,8 +23,6 @@ MyProc1 proc
     ; Pobieranie parametrÛw z rejestrÛw
     mov rsi, rcx             ; èrÛd≥owe dane obrazu (Source data)
     mov rdi, rdx             ; Docelowe dane obrazu (Destination data)
-    ; r8 - startX
-    ; r9 - endX
 
     ; Obliczanie kroku (Stride) obrazu
     mov rax, r10             ; Kopiowanie szerokoúci obrazu do rax
@@ -85,10 +83,14 @@ Continue:
     movhlps xmm2, xmm0       ; PrzesuniÍcie gÛrnej po≥owy xmm0 do xmm2
     pmovzxwd xmm2,xmm2       ; Rozszerzenie do 32-bitowych s≥Ûw
     pmovzxwd xmm0,xmm0       ; Rozszerzenie do 32-bitowych s≥Ûw
-    divps xmm0, xmm3         ; Dzielenie przez dzielniki
-    divps xmm2, xmm3         ; Dzielenie przez dzielniki
-    CVTPS2DQ xmm0, xmm0      ; Konwersja z float do int
-    CVTPS2DQ xmm2, xmm2      ; Konwersja z float do int
+    cvtdq2ps xmm0, xmm0
+    cvtdq2ps xmm1, xmm1
+    mulps xmm0, xmm3
+    mulps xmm2, xmm3
+    ;divps xmm0, xmm3         ; Dzielenie przez dzielniki
+    ;divps xmm2, xmm3         ; Dzielenie przez dzielniki
+    CVTTPS2DQ xmm0, xmm0      ; Konwersja z float do int
+    CVTTPS2DQ xmm2, xmm2      ; Konwersja z float do int
     packusdw xmm0,xmm0       ; Pakowanie 32-bitÛw do 16-bitÛw
     packusdw xmm2,xmm2       ; Pakowanie 32-bitÛw do 16-bitÛw
     movlhps xmm0, xmm2       ; Po≥πczenie danych w xmm0
@@ -96,9 +98,6 @@ Continue:
     movq rax, xmm0           ; Zapisanie wyniku do rax
     mov r14, r12             ; PrzywrÛcenie przesuniÍcia do r14
 	mov qword ptr [rdi + r14], rax ; Zapisanie wyniku do docelowego obrazu
-    mov al, 255              ; Maksymalna wartoúÊ alfa (przezroczystoúÊ)
-    mov [rdi + r14 + 3], al  ; Ustawienie wartoúci alfa w pikselu
-    mov [rdi + r14 + 7], al  ; Ustawienie wartoúci alfa w pikselu
 
 InnerInc:
     add r8, 2                ; PrzesuniÍcie do nastÍpnego piksela

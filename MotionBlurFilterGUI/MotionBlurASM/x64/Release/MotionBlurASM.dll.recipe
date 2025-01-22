@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\mateu\OneDrive\Pulpit\JAProjects\MotionBlurFilterGUI\x64\Release\MotionBlurASM.dll</FullPath>
+      <FullPath>C:\Users\mateu\Desktop\JAProjects\MotionBlurFilterGUI\MotionBlurFilterGUI\bin\x64\Release\net8.0-windows\MotionBlurASM.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
