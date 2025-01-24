@@ -104,8 +104,8 @@ namespace MotionBlurFilterGUI
             stopwatch.Stop();
             sourceBitmap.UnlockBits(bmpData);
             tempBitmap.UnlockBits(tempData);   
-            String outputImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "blurredDog.jpg");
-            tempBitmap.Save(outputImage, ImageFormat.Jpeg);
+            String outputImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "blurredDog.bmp");
+            tempBitmap.Save(outputImage, ImageFormat.Bmp);
             OutcomePicture.Image = tempBitmap;
             TimeValueLabel.Text = stopwatch.ElapsedMilliseconds.ToString() + "ms";
         }

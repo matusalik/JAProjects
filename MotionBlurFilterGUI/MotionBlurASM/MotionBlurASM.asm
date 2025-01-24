@@ -33,7 +33,7 @@ MyProc1 proc
     mov r13, 5               ; Inicjalizacja zmiennej r13 do pêtli zewnêtrznej
     mov rcx, r8              ; Pocz¹tkowa wartoœæ dla startX
 
-    ;movdqu xmm3, xmmword ptr [DivArray] ; Za³adowanie tablicy dzielników
+    movdqu xmm3, xmmword ptr [DivArray] ; Za³adowanie tablicy dzielników
 
 OuterLoop:    
     cmp r13, r11             ; Sprawdzenie, czy r13 osi¹gnê³o wysokoœæ - 5
@@ -85,8 +85,8 @@ Continue:
     pmovzxwd xmm0,xmm0       ; Rozszerzenie do 32-bitowych s³ów
     cvtdq2ps xmm0, xmm0      ;int -> float
     cvtdq2ps xmm2, xmm2      ;int -> float
-    mulps xmm0, xmmword ptr [DivArray]  ;mnozenie przez odwrotnosc
-    mulps xmm2, xmmword ptr [DivArray]  ;mnozenie przez odwrotnosc
+    mulps xmm0, xmm3  ;mnozenie przez odwrotnosc
+    mulps xmm2, xmm3  ;mnozenie przez odwrotnosc
     CVTTPS2DQ xmm0, xmm0      ; Konwersja z float do int
     CVTTPS2DQ xmm2, xmm2      ; Konwersja z float do int
     packusdw xmm0,xmm0       ; Pakowanie 32-bitów do 16-bitów

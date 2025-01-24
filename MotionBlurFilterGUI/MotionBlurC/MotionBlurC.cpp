@@ -6,7 +6,7 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
     float reciprocal = 0.090909;
     for (int y = 5; y < height - 5; y++) {
         for (int x = startX; x < endX; x++) {
-            int red = 0, green = 0, blue = 0;
+            int red = 0, green = 0, blue = 0, alpha = 0;
 
             // Apply the mask
             for (int i = -radius; i <= radius; i++) {
@@ -14,7 +14,7 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
                 blue += imageData[index];
                 green += imageData[index + 1];
                 red += imageData[index + 2];
-
+                alpha += imageData[index + 3];
             }
 
             // Assign computed values to result
@@ -22,7 +22,7 @@ void ApplyMotionBlur(uint8_t* imageData, uint8_t* temp, int startX, int endX, in
             temp[resultIndex] = (int)(blue * reciprocal);
             temp[resultIndex + 1] = (int)(green * reciprocal);
             temp[resultIndex + 2] = (int)(red * reciprocal);
-            temp[resultIndex + 3] = imageData[resultIndex + 3];
+            temp[resultIndex + 3] = (int)(alpha * reciprocal);
         }
     }
 }
